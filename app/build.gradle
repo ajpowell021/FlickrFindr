@@ -26,6 +26,7 @@ android {
 
 dependencies {
     kapt daggerCompiler
+    kapt daggerAndroidProcessor
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation dagger
@@ -38,6 +39,11 @@ dependencies {
     implementation retrofit
     implementation recyclerView
     implementation viewModel
+    implementation gson
+    implementation retrofitGsonConverter
+    implementation retrofitRxJava
+    implementation okHttp
+    implementation loggingInterceptor
 
     testImplementation jUnit
     androidTestImplementation espresso

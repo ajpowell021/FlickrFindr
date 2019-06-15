@@ -29,17 +29,25 @@ buildscript {
         epoxyVersion = '2.5.0'
         retrofitVersion = '2.3.0'
         lifecycleVersion = '2.0.0'
+        gsonVersion = '2.8.2'
+        okHttpVersion = '3.9.0'
 
         // Declarations
         dagger = "com.google.dagger:dagger:$daggerVersion"
         daggerAndroid = "com.google.dagger:dagger-android:$daggerVersion"
         daggerAndroidSupport = "com.google.dagger:dagger-android-support:$daggerVersion"
         daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
+        daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:$daggerVersion"
         epoxy = "com.airbnb.android:epoxy:$epoxyVersion"
         retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
         retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
         retrofitRxJava = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
         viewModel = "androidx.lifecycle:lifecycle-viewmodel:$lifecycleVersion"
+        gson = "com.google.code.gson:gson:$gsonVersion"
+        retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+        retrofitRxJava = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+        okHttp = "com.squareup.okhttp3:okhttp:$okHttpVersion"
+        loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 
         ////////////////////////////////////////////////////////////////
         // Test Libraries
