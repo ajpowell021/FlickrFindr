@@ -1,9 +1,9 @@
 package com.adam.flickrfindr.model
 
-data class PhotoPage (
+data class Photos (
     val page: Int,
     val pages: Int,
-    val perPage: Int,
+    val perpage: Int,
     val total: Int,
-    val photos: List<FlickrImage>
+    val photo: List<FlickrImage>
 )

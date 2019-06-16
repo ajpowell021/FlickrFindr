@@ -43,6 +43,8 @@ dependencies {
     implementation retrofitGsonConverter
     implementation retrofitRxJava
     implementation okHttp
+    implementation rxJava
+    implementation rxAndroid
     implementation loggingInterceptor
 
     testImplementation jUnit

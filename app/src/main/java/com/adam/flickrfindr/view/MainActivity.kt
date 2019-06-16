@@ -27,9 +27,6 @@ class MainActivity : DaggerActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        viewModel =
-//            ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(MainViewModel::class.java)
-
 
         viewModel.search()
 
