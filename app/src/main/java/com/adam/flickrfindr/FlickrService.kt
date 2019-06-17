@@ -10,6 +10,7 @@ interface FlickrService {
 
     @GET("services/rest/?method=flickr.photos.search&api_key=1508443e49213ff84d566777dc211f2a&nojsoncallback=1&format=json")
     fun search(
-        @Query("text") query: String
+        @Query("text") query: String,
+        @Query("per_page") perPage: Int
     ) : Observable<SearchResponse>
 }
