@@ -9,7 +9,7 @@ class RetrofitFlickrDataSource(private val service: FlickrService) : RemoteFlick
     override fun searchImages(query: String): Observable<Photos> {
         return service.search(query)
             .map {
-                Photos(it.page, it.pages, it.perpage, it.total, it.photo)
+                Photos(it.photos.page, it.photos.pages, it.photos.perpage, it.photos.total, it.photos.photo, it.stat)
             }
     }
 }

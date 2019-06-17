@@ -1,7 +1,7 @@
 package com.adam.flickrfindr.view
 
 import android.content.Context
-import com.adam.flickrfindr.model.FlickrImage
+import com.adam.flickrfindr.model.Photo
 import com.airbnb.epoxy.EpoxyController
 
 
@@ -9,10 +9,10 @@ class ImageController(
     private val context: Context
 ) : EpoxyController() {
 
-    private var flickrImages : List<FlickrImage> = emptyList()
+    private var photos : List<Photo> = emptyList()
 
     override fun buildModels() {
-        flickrImages.forEachIndexed { index, flickrImage ->
+        photos.forEachIndexed { index, flickrImage ->
 
         }
     }

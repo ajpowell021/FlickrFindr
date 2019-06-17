@@ -9,11 +9,10 @@ class SearchImages @Inject constructor(private val remote: RemoteFlickrDataSourc
 
     fun execute(request: Request): Observable<Response> {
         return remote.searchImages(request.query)
-            .onErrorReturn { Photos(0, 0, 0, 0, emptyList()) }
             .map { Response(it) }
     }
 
     class Request(val query: String)
 
-    class Response(val photoPage: Photos)
+    class Response(val photos: Photos)
 }

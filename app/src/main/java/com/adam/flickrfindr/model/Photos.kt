@@ -4,6 +4,7 @@ data class Photos (
     val page: Int,
     val pages: Int,
     val perpage: Int,
-    val total: Int,
-    val photo: List<FlickrImage>
+    val total: String?,
+    val photo: List<Photo>?,
+    val stat: String
 )
