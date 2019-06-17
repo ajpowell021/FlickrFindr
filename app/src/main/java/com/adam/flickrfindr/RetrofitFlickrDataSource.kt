@@ -7,7 +7,6 @@ import io.reactivex.Observable
 class RetrofitFlickrDataSource(private val service: FlickrService) : RemoteFlickrDataSource {
 
     override fun searchImages(query: String): Observable<Photos> {
-        val test = ""
         return service.search(query)
             .map {
                 Photos(it.page, it.pages, it.perpage, it.total, it.photo)
