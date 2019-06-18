@@ -38,7 +38,7 @@ dependencies {
     implementation constraintLayout
     implementation retrofit
     implementation recyclerView
-    implementation viewModel
+    implementation lifecycle
     implementation gson
     implementation retrofitGsonConverter
     implementation retrofitRxJava
@@ -46,6 +46,7 @@ dependencies {
     implementation rxJava
     implementation rxAndroid
     implementation loggingInterceptor
+    implementation picasso
 
     testImplementation jUnit
     androidTestImplementation espresso

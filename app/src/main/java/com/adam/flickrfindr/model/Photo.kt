@@ -10,4 +10,8 @@ data class Photo (
     val isPublic: Int,
     val isFriend: Int,
     val isFamily: Int
-)
+) {
+    fun getUrl(): String {
+        return "https://farm$farm.staticflickr.com/$server/${id}_$secret.jpg"
+    }
+}

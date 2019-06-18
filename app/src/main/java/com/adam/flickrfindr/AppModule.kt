@@ -3,6 +3,7 @@ package com.adam.flickrfindr
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.squareup.picasso.Picasso
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -77,5 +78,10 @@ class AppModule {
     @Provides
     fun getRemoteFlickrDataSource(service: FlickrService): RemoteFlickrDataSource {
         return RetrofitFlickrDataSource(service)
+    }
+
+    @Provides
+    fun getPicasso(context: Context): Picasso {
+        return Picasso.with(context)
     }
 }

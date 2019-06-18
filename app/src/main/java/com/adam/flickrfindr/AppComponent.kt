@@ -1,5 +1,6 @@
 package com.adam.flickrfindr
 
+import com.squareup.picasso.Picasso
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
