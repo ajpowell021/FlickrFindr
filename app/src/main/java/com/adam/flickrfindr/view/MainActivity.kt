@@ -7,6 +7,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adam.flickrfindr.R
 import com.adam.flickrfindr.model.Photo
@@ -34,7 +35,7 @@ class MainActivity : DaggerActivity(), LifecycleOwner {
 
     private lateinit var lifeCycleRegistry: LifecycleRegistry
 
-    private val layoutManager = GridLayoutManager(this, ROW_LENGTH)
+    private val layoutManager = LinearLayoutManager(this)
     private val controller = ImageController(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,9 +77,5 @@ class MainActivity : DaggerActivity(), LifecycleOwner {
 
     private fun setController(photos: List<Photo>) {
         controller.setPhotos(photos, picasso)
-    }
-
-    companion object {
-        private const val ROW_LENGTH = 4
     }
 }
