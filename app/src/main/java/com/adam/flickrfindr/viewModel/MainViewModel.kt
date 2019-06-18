@@ -19,9 +19,8 @@ class MainViewModel @Inject constructor(private val searchImages: SearchImages) 
         MutableLiveData<List<Photo>>()
     }
 
-    fun search() {
-
-        searchImages.execute(SearchImages.Request("cat"))
+    fun search(query: String) {
+        searchImages.execute(SearchImages.Request(query))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { response ->

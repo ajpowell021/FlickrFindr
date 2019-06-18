@@ -1,6 +1,7 @@
 package com.adam.flickrfindr.view
 
 import android.os.Bundle
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
@@ -23,6 +24,10 @@ class MainActivity : DaggerActivity(), LifecycleOwner {
     @Inject
     lateinit var picasso: Picasso
 
+    private val searchView: SearchView by lazy {
+        findViewById<SearchView>(R.id.search_view)
+    }
+
     private val recyclerView : RecyclerView by lazy {
         findViewById<RecyclerView>(R.id.image_recycler_view)
     }
@@ -42,13 +47,27 @@ class MainActivity : DaggerActivity(), LifecycleOwner {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = controller.adapter
 
-        viewModel.search()
-
         val photoObserver = Observer<List<Photo>> {
             setController(it)
         }
 
         viewModel.photoPage.observe(this, photoObserver)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.search(query.orEmpty())
+                return true
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                viewModel.search(query.orEmpty())
+                return true
+            }
+        })
+
+        searchView.setOnCloseListener {
+            true
+        }
     }
 
     override fun getLifecycle(): Lifecycle {
