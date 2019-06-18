@@ -4,13 +4,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        xmlns:tools="http://schemas.android.com/tools"
         >
 
         <ImageView
                 android:id="@+id/image_view"
                 android:layout_width="@dimen/image_size"
                 android:layout_height="@dimen/image_size"
-                />
+        />
 
         <TextView
                 android:id="@+id/image_title_view"
@@ -21,6 +22,7 @@
                 android:textSize="@dimen/title_text_size"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/small_margin"
-                />
+                tools:text="Title Goes Here"
+        />
 
 </com.adam.flickrfindr.view.ImageItemView>

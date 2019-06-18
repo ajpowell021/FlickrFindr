@@ -6,7 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adam.flickrfindr.R
@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
 import dagger.android.DaggerActivity
 import javax.inject.Inject
+
 
 class MainActivity : DaggerActivity(), LifecycleOwner {
 
@@ -47,6 +48,7 @@ class MainActivity : DaggerActivity(), LifecycleOwner {
 
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = controller.adapter
+        recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
 
         val photoObserver = Observer<List<Photo>> {
             setController(it)
@@ -61,8 +63,8 @@ class MainActivity : DaggerActivity(), LifecycleOwner {
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
-                viewModel.search(query.orEmpty())
-                return true
+                //viewModel.search(query.orEmpty())
+                return false
             }
         })
 
