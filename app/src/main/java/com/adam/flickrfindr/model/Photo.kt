@@ -12,6 +12,6 @@ data class Photo (
     val isFamily: Int
 ) {
     fun getUrl(): String {
-        return "https://farm$farm.staticflickr.com/$server/${id}_$secret.jpg"
+        return "https://farm$farm.staticflickr.com/$server/${id}_${secret}_t.jpg"
     }
 }
