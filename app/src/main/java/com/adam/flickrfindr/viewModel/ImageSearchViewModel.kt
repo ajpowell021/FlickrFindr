@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.adam.flickrfindr.SearchImages
 import com.adam.flickrfindr.model.Photo
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -15,7 +14,7 @@ class ImageSearchViewModel @Inject constructor(private val searchImages: SearchI
 
     private val disposables = CompositeDisposable()
 
-    val photoPage: MutableLiveData<List<Photo>> by lazy {
+    val searchResults: MutableLiveData<List<Photo>> by lazy {
         MutableLiveData<List<Photo>>()
     }
 
@@ -24,8 +23,12 @@ class ImageSearchViewModel @Inject constructor(private val searchImages: SearchI
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { response ->
-                photoPage.value = response.photos.photo.orEmpty()
+                searchResults.value = response.photos.photo.orEmpty()
             }
             .let { disposables.add(it) }
+    }
+
+    fun clearSearchResults() {
+        searchResults.value = emptyList()
     }
 }

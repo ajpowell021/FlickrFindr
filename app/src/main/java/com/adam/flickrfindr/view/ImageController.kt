@@ -14,7 +14,7 @@ class ImageController(
     private var photos : List<Photo> = emptyList()
     private var picasso: Picasso? = null
 
-    fun setPhotos(photos: List<Photo>, picasso: Picasso, listener: ImageItemView.Listener) {
+    fun setPhotos(photos: List<Photo>, picasso: Picasso) {
         this.photos = photos
         this.picasso = picasso
         requestModelBuild()

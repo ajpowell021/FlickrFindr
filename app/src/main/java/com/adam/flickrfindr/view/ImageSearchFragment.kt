@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,11 +46,16 @@ class ImageSearchFragment @Inject constructor(val viewModel: ImageSearchViewMode
             }
         })
 
-        val photoObserver = Observer<List<Photo>> {
-            controller.setPhotos(it, picasso, this)
+        searchView.setOnCloseListener {
+            viewModel.clearSearchResults()
+            true
         }
 
-        viewModel.photoPage.observe(this, photoObserver)
+        val photoObserver = Observer<List<Photo>> {
+            controller.setPhotos(it, picasso)
+        }
+
+        viewModel.searchResults.observe(this, photoObserver)
 
         return rootView
     }
