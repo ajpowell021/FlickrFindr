@@ -45,17 +45,6 @@ class ImageItemView @JvmOverloads constructor(
             if ((picasso != null)) {
                 picasso
                     .load(photo.getThumbnailUrl())
-                    .fit()
-                    .centerCrop()
-                    .placeholder(
-                        ColorDrawable(
-                            ContextCompat.getColor(context, android.R.color.background_dark)
-                        )
-                    )
-                    .error(ColorDrawable(
-                        ContextCompat.getColor(context, android.R.color.holo_purple)
-                        )
-                    )
                     .into(imageView)
             }
         }

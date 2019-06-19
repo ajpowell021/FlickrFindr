@@ -30,8 +30,6 @@ class ImageDetailsFragment(private val photo: Photo) : DaggerFragment() {
 
         picasso
             .load(photo.getLargeUrl())
-            .fit()
-            .centerCrop()
             .into(imageView)
 
         titleView.text = photo.title

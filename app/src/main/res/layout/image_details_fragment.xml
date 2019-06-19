@@ -8,21 +8,29 @@
     android:orientation="vertical"
     >
 
-    <ImageView
-        android:id="@+id/image_view"
+    <FrameLayout
+        android:layout_weight="0.7"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:adjustViewBounds="true"
-        android:src="@drawable/ic_launcher_background"
         android:layout_marginTop="@dimen/small_margin"
+    >
+
+        <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_launcher_background"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
         />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/title_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
         android:textAlignment="center"
         android:textSize="@dimen/title_text_size"
         tools:text="This is the title"
