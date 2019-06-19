@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adam.flickrfindr.R
 import com.adam.flickrfindr.model.Photo
-import com.adam.flickrfindr.viewModel.MainViewModel
+import com.adam.flickrfindr.viewModel.ImageSearchViewModel
 import com.squareup.picasso.Picasso
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class ImageSearchFragment @Inject constructor(val viewModel: MainViewModel, val picasso: Picasso): DaggerFragment(), ImageItemView.Listener {
+class ImageSearchFragment @Inject constructor(val viewModel: ImageSearchViewModel, val picasso: Picasso): DaggerFragment(), ImageItemView.Listener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.image_search_fragment, container, false)

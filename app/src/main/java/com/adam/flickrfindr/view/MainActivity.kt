@@ -5,7 +5,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import com.adam.flickrfindr.R
-import com.adam.flickrfindr.viewModel.MainViewModel
+import com.adam.flickrfindr.viewModel.ImageSearchViewModel
 import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
@@ -15,7 +15,7 @@ import javax.inject.Inject
 class MainActivity : DaggerAppCompatActivity(), LifecycleOwner {
 
     @Inject
-    lateinit var viewModel: MainViewModel
+    lateinit var viewModel: ImageSearchViewModel
 
     @Inject
     lateinit var picasso: Picasso
