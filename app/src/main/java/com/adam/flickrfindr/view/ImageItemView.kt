@@ -7,6 +7,9 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.adam.flickrfindr.App
 import com.adam.flickrfindr.R
 import com.adam.flickrfindr.model.Photo
 import com.airbnb.epoxy.EpoxyModel
@@ -20,12 +23,17 @@ class ImageItemView @JvmOverloads constructor(
     class Model(
         private val context: Context,
         private val photo: Photo,
-        private val picasso: Picasso?
+        private val picasso: Picasso?,
+        private val listener: Listener
     ) : EpoxyModel<ImageItemView>() {
 
         override fun getDefaultLayout() = R.layout.image_item_view
 
         override fun bind(view: ImageItemView) {
+
+            view.setOnClickListener {
+                listener.onPhotoClicked(photo)
+            }
 
             val imageView = view.findViewById<ImageView>(R.id.image_view)
             val titleTextView = view.findViewById<TextView>(R.id.image_title_view)
@@ -54,5 +62,9 @@ class ImageItemView @JvmOverloads constructor(
                     .into(imageView)
             }
         }
+    }
+
+    interface Listener {
+        fun onPhotoClicked(photo: Photo)
     }
 }
