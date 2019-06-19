@@ -11,7 +11,11 @@ data class Photo (
     val isFriend: Int,
     val isFamily: Int
 ) {
-    fun getUrl(): String {
+    fun getThumbnailUrl(): String {
         return "https://farm$farm.staticflickr.com/$server/${id}_${secret}_t.jpg"
+    }
+
+    fun getLargeUrl(): String {
+        return "https://farm$farm.staticflickr.com/$server/${id}_$secret.jpg"
     }
 }

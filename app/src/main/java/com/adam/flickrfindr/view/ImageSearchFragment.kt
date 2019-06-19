@@ -62,7 +62,7 @@ class ImageSearchFragment @Inject constructor(val viewModel: MainViewModel, val 
     override fun onPhotoClicked(photo: Photo) {
         val manager = activity!!.supportFragmentManager
         val transaction = manager.beginTransaction()
-        transaction.replace(R.id.content_layout, ImageDetailsFragment())
+        transaction.replace(R.id.content_layout, ImageDetailsFragment(photo))
         transaction.addToBackStack(null)
         transaction.commit()
     }

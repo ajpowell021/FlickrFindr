@@ -7,9 +7,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import com.adam.flickrfindr.App
 import com.adam.flickrfindr.R
 import com.adam.flickrfindr.model.Photo
 import com.airbnb.epoxy.EpoxyModel
@@ -47,7 +44,7 @@ class ImageItemView @JvmOverloads constructor(
 
             if ((picasso != null)) {
                 picasso
-                    .load(photo.getUrl())
+                    .load(photo.getThumbnailUrl())
                     .fit()
                     .centerCrop()
                     .placeholder(
