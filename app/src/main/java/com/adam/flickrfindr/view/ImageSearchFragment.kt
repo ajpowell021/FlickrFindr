@@ -53,6 +53,7 @@ class ImageSearchFragment @Inject constructor(val viewModel: ImageSearchViewMode
 
         val photoObserver = Observer<List<Photo>> {
             controller.setPhotos(it, picasso)
+            recyclerView.adapter = controller.adapter
         }
 
         viewModel.searchResults.observe(this, photoObserver)
