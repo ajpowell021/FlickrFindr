@@ -85,6 +85,11 @@ class ImageSearchFragment @Inject constructor(val viewModel: ImageSearchViewMode
         super.onAttach(context)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     override fun onPhotoClicked(photo: Photo) {
         val manager = activity!!.supportFragmentManager
         val transaction = manager.beginTransaction()

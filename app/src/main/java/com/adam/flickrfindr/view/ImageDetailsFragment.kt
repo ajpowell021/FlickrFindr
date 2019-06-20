@@ -41,4 +41,9 @@ class ImageDetailsFragment(private val photo: Photo) : DaggerFragment() {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
 }
