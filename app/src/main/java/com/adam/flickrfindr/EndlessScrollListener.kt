@@ -21,7 +21,7 @@ class EndlessScrollListener(
             evaluating = true
             val itemCount = layoutManager.itemCount
             val lastItemPosition = layoutManager.findLastCompletelyVisibleItemPosition()
-            if (itemCount <= lastItemPosition + 10) {
+            if (itemCount <= lastItemPosition + 15) {
                 loading = true
                 listener()
             }

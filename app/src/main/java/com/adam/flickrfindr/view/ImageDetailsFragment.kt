@@ -19,6 +19,7 @@ import javax.inject.Inject
 
 class ImageDetailsFragment(private val photo: Photo, private val picasso: Picasso) : DaggerFragment() {
 
+    // Overrides
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater.inflate(R.layout.image_details_fragment, container, false)
 

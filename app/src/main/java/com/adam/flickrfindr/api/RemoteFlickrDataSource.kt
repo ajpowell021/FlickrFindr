@@ -1,4 +1,4 @@
-package com.adam.flickrfindr
+package com.adam.flickrfindr.api
 
 import com.adam.flickrfindr.model.Photos
 import io.reactivex.Observable

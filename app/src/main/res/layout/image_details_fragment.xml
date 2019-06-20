@@ -34,6 +34,7 @@
         android:textAlignment="center"
         android:textSize="@dimen/title_text_size"
         tools:text="This is the title"
+        android:layout_margin="@dimen/small_margin"
         />
 
 </LinearLayout>

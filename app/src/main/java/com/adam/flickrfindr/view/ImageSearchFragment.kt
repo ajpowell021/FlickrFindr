@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -17,7 +18,6 @@ import com.adam.flickrfindr.viewModel.ImageSearchViewModel
 import com.squareup.picasso.Picasso
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
-import javax.inject.Inject
 
 class ImageSearchFragment(
     val viewModel: ImageSearchViewModel,
@@ -34,7 +34,7 @@ class ImageSearchFragment(
 
         // RecyclerView setup
         val layoutManager = LinearLayoutManager(activity)
-        val controller = ImageController(this, picasso)
+        val controller = ImageController(this, picasso, requireContext())
         val loadNextPage = {
             viewModel.loadNextPage()
             setPhotos(viewModel.searchResults.value!!, controller)
@@ -53,6 +53,7 @@ class ImageSearchFragment(
 
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel.search(query.orEmpty())
+                hideKeyBoard()
                 return true
             }
 
@@ -109,5 +110,10 @@ class ImageSearchFragment(
     // Private Functions
     private fun setPhotos(photos: List<Photo>, controller: ImageController) {
         controller.setPhotos(photos)
+    }
+
+    private fun hideKeyBoard() {
+        val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view!!.windowToken, 0)
     }
 }

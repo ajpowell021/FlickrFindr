@@ -2,7 +2,7 @@ package com.adam.flickrfindr.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.adam.flickrfindr.SearchImages
+import com.adam.flickrfindr.api.SearchImages
 import com.adam.flickrfindr.model.Photo
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

@@ -1,6 +1,7 @@
 package com.adam.flickrfindr.view
 
 import android.content.Context
+import android.content.res.Resources
 import android.util.AttributeSet
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -18,7 +19,8 @@ class ImageItemView @JvmOverloads constructor(
     class Model(
         private val photo: Photo,
         private val listener: Listener,
-        private val picasso: Picasso
+        private val picasso: Picasso,
+        private val context: Context
     ) : EpoxyModel<ImageItemView>() {
 
         override fun getDefaultLayout() = R.layout.image_item_view
@@ -33,7 +35,7 @@ class ImageItemView @JvmOverloads constructor(
             val titleTextView = view.findViewById<TextView>(R.id.image_title_view)
 
             titleTextView.text = if (photo.title.isEmpty()) {
-                "Untitled"
+                context.getText(R.string.untitled_image_title)
             }
             else {
                 photo.title

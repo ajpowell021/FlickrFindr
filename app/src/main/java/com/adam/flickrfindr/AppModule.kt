@@ -1,6 +1,9 @@
 package com.adam.flickrfindr
 
 import android.content.Context
+import com.adam.flickrfindr.api.FlickrService
+import com.adam.flickrfindr.api.RemoteFlickrDataSource
+import com.adam.flickrfindr.api.RetrofitFlickrDataSource
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
