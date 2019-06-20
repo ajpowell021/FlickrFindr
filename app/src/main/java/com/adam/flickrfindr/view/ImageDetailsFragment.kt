@@ -17,10 +17,7 @@ import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 
-class ImageDetailsFragment(private val photo: Photo) : DaggerFragment() {
-
-    @Inject
-    lateinit var picasso: Picasso
+class ImageDetailsFragment(private val photo: Photo, private val picasso: Picasso) : DaggerFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater.inflate(R.layout.image_details_fragment, container, false)

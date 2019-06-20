@@ -1,12 +1,10 @@
 package com.adam.flickrfindr.view
 
 import android.content.Context
-import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import com.adam.flickrfindr.R
 import com.adam.flickrfindr.model.Photo
 import com.airbnb.epoxy.EpoxyModel
@@ -18,10 +16,9 @@ class ImageItemView @JvmOverloads constructor(
     theme: Int = 0) : LinearLayout(context, attrs, theme) {
 
     class Model(
-        private val context: Context,
         private val photo: Photo,
-        private val picasso: Picasso?,
-        private val listener: Listener
+        private val listener: Listener,
+        private val picasso: Picasso
     ) : EpoxyModel<ImageItemView>() {
 
         override fun getDefaultLayout() = R.layout.image_item_view
@@ -42,11 +39,9 @@ class ImageItemView @JvmOverloads constructor(
                 photo.title
             }
 
-            if ((picasso != null)) {
-                picasso
-                    .load(photo.getThumbnailUrl())
-                    .into(imageView)
-            }
+            picasso
+                .load(photo.getThumbnailUrl())
+                .into(imageView)
         }
     }
 

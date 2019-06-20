@@ -19,11 +19,10 @@ import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class ImageSearchFragment @Inject constructor(
+class ImageSearchFragment(
     val viewModel: ImageSearchViewModel,
     val picasso: Picasso
 ): DaggerFragment(), ImageItemView.Listener {
-
 
     // Overrides
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -35,7 +34,7 @@ class ImageSearchFragment @Inject constructor(
 
         // RecyclerView setup
         val layoutManager = LinearLayoutManager(activity)
-        val controller = ImageController(requireContext(), this)
+        val controller = ImageController(this, picasso)
         val loadNextPage = {
             viewModel.loadNextPage()
             setPhotos(viewModel.searchResults.value!!, controller)
@@ -102,13 +101,13 @@ class ImageSearchFragment @Inject constructor(
     override fun onPhotoClicked(photo: Photo) {
         activity!!.supportFragmentManager
         .beginTransaction()
-        .replace(R.id.content_layout, ImageDetailsFragment(photo))
+        .replace(R.id.content_layout, ImageDetailsFragment(photo, picasso))
         .addToBackStack(null)
         .commit()
     }
 
     // Private Functions
     private fun setPhotos(photos: List<Photo>, controller: ImageController) {
-        controller.setPhotos(photos, picasso)
+        controller.setPhotos(photos)
     }
 }
