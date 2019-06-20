@@ -26,7 +26,11 @@ class ImageSearchFragment @Inject constructor(val viewModel: ImageSearchViewMode
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.image_search_fragment, container, false)
 
+        // Views
         val recyclerView = rootView.findViewById<RecyclerView>(R.id.image_recycler_view)
+        val searchView = rootView.findViewById<SearchView>(R.id.search_view)
+
+        // RecyclerView setup
         val layoutManager = LinearLayoutManager(activity)
         val controller = ImageController(requireContext(), this)
         val loadNextPage = {
@@ -42,7 +46,7 @@ class ImageSearchFragment @Inject constructor(val viewModel: ImageSearchViewMode
             DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
         )
 
-        val searchView = rootView.findViewById<SearchView>(R.id.search_view)
+        // SearchView Listeners
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -51,6 +55,7 @@ class ImageSearchFragment @Inject constructor(val viewModel: ImageSearchViewMode
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                // Do nothing on text change
                 return false
             }
         })
@@ -60,6 +65,7 @@ class ImageSearchFragment @Inject constructor(val viewModel: ImageSearchViewMode
             true
         }
 
+        // ViewModel Observers
         val photoObserver = Observer<List<Photo>> {
             setPhotos(it, controller)
             scrollListener.setLoading(false)
