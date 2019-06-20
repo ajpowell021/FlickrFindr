@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.adam.flickrfindr.R
 import com.adam.flickrfindr.model.Photo
@@ -25,6 +26,11 @@ class ImageDetailsFragment(private val photo: Photo, private val picasso: Picass
 
         val imageView = rootView.findViewById<ImageView>(R.id.image_view)
         val titleView = rootView.findViewById<TextView>(R.id.title_text_view)
+        val toolbar = rootView.findViewById<Toolbar>(R.id.toolbar)
+
+        toolbar.setNavigationOnClickListener {
+            activity!!.supportFragmentManager.popBackStack()
+        }
 
         picasso
             .load(photo.getLargeUrl())
