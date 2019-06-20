@@ -29,14 +29,28 @@ class MainActivity : DaggerAppCompatActivity(), LifecycleOwner {
         lifeCycleRegistry = LifecycleRegistry(this)
         lifeCycleRegistry.markState(Lifecycle.State.CREATED)
 
-        val manager = this.supportFragmentManager
-        val fragmentTransaction = manager.beginTransaction()
-        fragmentTransaction.replace(R.id.content_layout, ImageSearchFragment(viewModel, picasso))
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        this.supportFragmentManager
+        .beginTransaction()
+        .replace(R.id.content_layout, ImageSearchFragment(viewModel, picasso), imageSearchTag)
+        .commit()
     }
 
     override fun getLifecycle(): Lifecycle {
         return lifeCycleRegistry
+    }
+
+    override fun onBackPressed() {
+        val searchFragment = this.supportFragmentManager.findFragmentByTag(imageSearchTag)
+        if (searchFragment != null) {
+            if (searchFragment.isAdded && !viewModel.searchResults.value.isNullOrEmpty()) {
+                viewModel.clearSearchResults()
+                return
+            }
+        }
+        super.onBackPressed()
+    }
+
+    companion object {
+        const val imageSearchTag = "IMAGE_SEARCH_FRAGMENT"
     }
 }

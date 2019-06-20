@@ -19,7 +19,10 @@ import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class ImageSearchFragment @Inject constructor(val viewModel: ImageSearchViewModel, val picasso: Picasso): DaggerFragment(), ImageItemView.Listener {
+class ImageSearchFragment @Inject constructor(
+    val viewModel: ImageSearchViewModel,
+    val picasso: Picasso
+): DaggerFragment(), ImageItemView.Listener {
 
 
     // Overrides
@@ -97,11 +100,11 @@ class ImageSearchFragment @Inject constructor(val viewModel: ImageSearchViewMode
     }
 
     override fun onPhotoClicked(photo: Photo) {
-        val manager = activity!!.supportFragmentManager
-        val transaction = manager.beginTransaction()
-        transaction.replace(R.id.content_layout, ImageDetailsFragment(photo))
-        transaction.addToBackStack(null)
-        transaction.commit()
+        activity!!.supportFragmentManager
+        .beginTransaction()
+        .replace(R.id.content_layout, ImageDetailsFragment(photo))
+        .addToBackStack(null)
+        .commit()
     }
 
     // Private Functions
