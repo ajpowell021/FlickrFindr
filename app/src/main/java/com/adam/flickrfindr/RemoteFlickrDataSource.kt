@@ -5,5 +5,5 @@ import io.reactivex.Observable
 
 interface RemoteFlickrDataSource {
 
-    fun searchImages(query: String, perPage: Int) : Observable<Photos>
+    fun searchImages(query: String, page: Int, perPage: Int) : Observable<Photos>
 }

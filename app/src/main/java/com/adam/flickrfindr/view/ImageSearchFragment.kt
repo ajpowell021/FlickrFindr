@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.adam.flickrfindr.EndlessScrollListener
 import com.adam.flickrfindr.R
 import com.adam.flickrfindr.model.Photo
 import com.adam.flickrfindr.viewModel.ImageSearchViewModel
@@ -21,14 +21,23 @@ import javax.inject.Inject
 
 class ImageSearchFragment @Inject constructor(val viewModel: ImageSearchViewModel, val picasso: Picasso): DaggerFragment(), ImageItemView.Listener {
 
+
+    // Overrides
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.image_search_fragment, container, false)
 
+        val recyclerView = rootView.findViewById<RecyclerView>(R.id.image_recycler_view)
         val layoutManager = LinearLayoutManager(activity)
         val controller = ImageController(requireContext(), this)
-        val recyclerView = rootView.findViewById<RecyclerView>(R.id.image_recycler_view)
+        val loadNextPage = {
+            viewModel.loadNextPage()
+            setPhotos(viewModel.searchResults.value!!, controller)
+            Unit
+        }
+        val scrollListener = EndlessScrollListener(loadNextPage, layoutManager)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = controller.adapter
+        recyclerView.addOnScrollListener(scrollListener)
         recyclerView.addItemDecoration(
             DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
         )
@@ -52,11 +61,21 @@ class ImageSearchFragment @Inject constructor(val viewModel: ImageSearchViewMode
         }
 
         val photoObserver = Observer<List<Photo>> {
-            controller.setPhotos(it, picasso)
+            setPhotos(it, controller)
+            scrollListener.setLoading(false)
             recyclerView.adapter = controller.adapter
         }
 
         viewModel.searchResults.observe(this, photoObserver)
+
+        val loadedObserver = Observer<Boolean> {
+            if (it) {
+                scrollListener.setLoading(false)
+                viewModel.setPageLoaded(false)
+            }
+        }
+
+        viewModel.pageLoaded.observe(this, loadedObserver)
 
         return rootView
     }
@@ -72,5 +91,10 @@ class ImageSearchFragment @Inject constructor(val viewModel: ImageSearchViewMode
         transaction.replace(R.id.content_layout, ImageDetailsFragment(photo))
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    // Private Functions
+    private fun setPhotos(photos: List<Photo>, controller: ImageController) {
+        controller.setPhotos(photos, picasso)
     }
 }

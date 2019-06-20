@@ -6,8 +6,8 @@ import io.reactivex.Observable
 
 class RetrofitFlickrDataSource(private val service: FlickrService) : RemoteFlickrDataSource {
 
-    override fun searchImages(query: String, perPage: Int): Observable<Photos> {
-        return service.search(query, perPage)
+    override fun searchImages(query: String, page: Int, perPage: Int): Observable<Photos> {
+        return service.search(query, page, perPage)
             .map {
                 if (it.stat != "ok") {
                     // Something is wrong, maybe error handle this?
