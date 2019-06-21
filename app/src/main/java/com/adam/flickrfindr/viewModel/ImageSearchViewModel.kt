@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
-class ImageSearchViewModel @Inject constructor(private val searchImages: SearchImages) : ViewModel() {
+open class ImageSearchViewModel @Inject constructor(private val searchImages: SearchImages) : ViewModel() {
 
     private val disposables = CompositeDisposable()
 

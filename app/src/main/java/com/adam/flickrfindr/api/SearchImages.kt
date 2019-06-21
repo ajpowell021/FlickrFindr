@@ -5,9 +5,9 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 
-class SearchImages @Inject constructor(private val remote: RemoteFlickrDataSource) {
+open class SearchImages @Inject constructor(private val remote: RemoteFlickrDataSource) {
 
-    fun execute(request: Request): Observable<Response> {
+    open fun execute(request: Request): Observable<Response> {
         return remote.searchImages(request.query, request.page, request.perPage)
             .map { Response(it) }
     }
