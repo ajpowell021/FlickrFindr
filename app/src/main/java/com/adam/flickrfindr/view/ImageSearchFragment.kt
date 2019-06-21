@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.adam.flickrfindr.EndlessScrollListener
 import com.adam.flickrfindr.R
 import com.adam.flickrfindr.model.Photo
 import com.adam.flickrfindr.viewModel.ImageSearchViewModel

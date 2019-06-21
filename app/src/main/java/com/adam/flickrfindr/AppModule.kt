@@ -26,7 +26,7 @@ class AppModule {
     @Provides
     fun provideClient(): OkHttpClient {
         val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
+        logging.level = HttpLoggingInterceptor.Level.BASIC
         return OkHttpClient.Builder()
             .addInterceptor(logging)
             .build()

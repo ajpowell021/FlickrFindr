@@ -1,4 +1,4 @@
-package com.adam.flickrfindr
+package com.adam.flickrfindr.view
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,11 +21,15 @@ class EndlessScrollListener(
             evaluating = true
             val itemCount = layoutManager.itemCount
             val lastItemPosition = layoutManager.findLastCompletelyVisibleItemPosition()
-            if (itemCount <= lastItemPosition + 15) {
+            if (itemCount <= lastItemPosition + visibleThreshold) {
                 loading = true
                 listener()
             }
         }
         evaluating = false
+    }
+
+    companion object {
+        private const val visibleThreshold = 15
     }
 }

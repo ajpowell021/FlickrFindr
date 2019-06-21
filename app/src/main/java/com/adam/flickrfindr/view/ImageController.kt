@@ -24,7 +24,7 @@ class ImageController(
         photos.forEachIndexed { index, flickrImage ->
             ImageItemView
                 .Model(flickrImage, listener, picasso, context)
-                .id(index)
+                .id(flickrImage.id)
                 .addTo(this)
         }
     }
