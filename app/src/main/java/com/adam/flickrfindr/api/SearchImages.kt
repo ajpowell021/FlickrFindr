@@ -1,13 +1,13 @@
 package com.adam.flickrfindr.api
 
 import com.adam.flickrfindr.model.Photos
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import javax.inject.Inject
 
 
 open class SearchImages @Inject constructor(private val remote: RemoteFlickrDataSource) {
 
-    open fun execute(request: Request): Observable<Response> {
+    open fun execute(request: Request): Flowable<Response> {
         return remote.searchImages(request.query, request.page, request.perPage)
             .map { Response(it) }
     }

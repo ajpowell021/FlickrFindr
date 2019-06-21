@@ -1,7 +1,7 @@
 package com.adam.flickrfindr.api
 
 import com.adam.flickrfindr.model.SearchResponse
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -14,5 +14,5 @@ interface FlickrService {
         @Query("text") query: String,
         @Query("page") page: Int,
         @Query("per_page") perPage: Int
-    ) : Observable<SearchResponse>
+    ) : Flowable<SearchResponse>
 }

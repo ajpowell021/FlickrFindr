@@ -5,7 +5,7 @@ import com.adam.flickrfindr.api.SearchImages
 import com.adam.flickrfindr.model.Photo
 import com.adam.flickrfindr.model.Photos
 import com.adam.flickrfindr.viewModel.ImageSearchViewModel
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import org.junit.*
 import org.mockito.Mockito.*
 
@@ -21,7 +21,7 @@ class ImageSearchViewModelTest {
     private val stubPhoto = Photo("1", "1", "1", "1", 1, "Stubbed Title", 0, 0, 0)
     private val stubPhotos = Photos(1, 1, 1, "1", listOf(stubPhoto))
     private val stubbedRequest = SearchImages.Request("cat", 1)
-    private val stubbedResponse = Observable.just(SearchImages.Response(stubPhotos))
+    private val stubbedResponse = Flowable.just(SearchImages.Response(stubPhotos))
 
     @Before
     fun setup() {
@@ -35,10 +35,4 @@ class ImageSearchViewModelTest {
         // Then
         assert(viewModel.pageLoaded.value == true)
     }
-
-//    @Test
-//    fun testSearch() {
-//        viewModel.search("cat", Schedulers.trampoline(), Schedulers.trampoline())
-//        assert(1 == 1)
-//    }
 }

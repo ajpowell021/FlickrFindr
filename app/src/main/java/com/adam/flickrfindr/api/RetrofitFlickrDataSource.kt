@@ -2,14 +2,14 @@ package com.adam.flickrfindr.api
 
 import com.adam.flickrfindr.BuildConfig
 import com.adam.flickrfindr.model.Photos
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import java.lang.Exception
 
 
 class RetrofitFlickrDataSource(private val service: FlickrService) :
     RemoteFlickrDataSource {
 
-    override fun searchImages(query: String, page: Int, perPage: Int): Observable<Photos> {
+    override fun searchImages(query: String, page: Int, perPage: Int): Flowable<Photos> {
         return service.search(BuildConfig.API_KEY, query, page, perPage)
             .map {
                 if (it.stat != "ok") {
