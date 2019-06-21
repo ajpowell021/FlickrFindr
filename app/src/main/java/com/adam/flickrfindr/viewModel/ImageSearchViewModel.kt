@@ -56,5 +56,6 @@ open class ImageSearchViewModel @Inject constructor(private val searchImages: Se
     fun clearSearchResults() {
         searchResults.value?.clear()
         searchResults.value = searchResults.value
+        disposables.clear()
     }
 }
