@@ -7,6 +7,7 @@ import com.adam.flickrfindr.model.Photo
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import java.net.ConnectException
 import javax.inject.Inject
 
 
@@ -29,6 +30,7 @@ open class ImageSearchViewModel @Inject constructor(private val searchImages: Se
         searchImages.execute(SearchImages.Request(query, 1))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnError { throw ConnectException("Error: No connection returned from retrofit") }
             .subscribe { response ->
                 searchResults.value = response.photos.photo?.toMutableList()
             }
